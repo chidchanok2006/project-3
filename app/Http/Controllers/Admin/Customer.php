@@ -11,4 +11,5 @@ class Customer extends Controller
     {
         return view('admin.customer.index');
     }
+    
 }

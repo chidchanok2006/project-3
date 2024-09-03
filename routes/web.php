@@ -34,6 +34,8 @@ Route::prefix ('admin')->name('admin.') ->group (function (){
     Route::prefix('customer')->name('customer.')->group(function(){
 
         Route::get('/',[Customer::class, 'index'])->name('index');
+        Route::get('/add', [Product::class, 'add'])->name('add');
+        Route::get('/edit', [Product::class, 'edit'])->name('edit');
 
     });
 
@@ -41,6 +43,9 @@ Route::prefix ('admin')->name('admin.') ->group (function (){
     Route::prefix ('product')->name('product.') ->group (function (){
 
         Route::get('/', [Product::class, 'index'])->name('index');
+        Route::get('/add', [Product::class, 'add'])->name('add');
+        Route::get('/edit', [Product::class, 'edit'])->name('edit');
+
 
     });
 
@@ -48,12 +53,16 @@ Route::prefix ('admin')->name('admin.') ->group (function (){
     Route::prefix('category')->name('category.')->group(function(){
 
         route::get('/',[Category::class,'index'])->name('index');
+        Route::get('/add', [Category::class, 'add'])->name('add');
+        Route::get('/edit', [Category::class, 'edit'])->name('edit');
     });
 
     //order
-    Route::prefix('order')->name('order.')->group(function(){
+    Route::prefix('or
+    der')->name('order.')->group(function(){
 
         route::get('/',[Order::class,'index'])->name('index');
+        route::get('/add',[Order::class,'add'])->name('add');
 
     });
 
@@ -68,6 +77,8 @@ Route::prefix ('admin')->name('admin.') ->group (function (){
     Route::prefix('topping')->name('topping.')->group(function(){
 
         route::get('/',[Topping::class,'index'])->name('index');
+        route::get('/add',[Topping::class,'add'])->name('add');
+        route::get('/edit',[Topping::class,'edit'])->name('edit');
 
     });
 

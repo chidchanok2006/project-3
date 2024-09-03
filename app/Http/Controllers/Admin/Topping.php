@@ -11,4 +11,14 @@ class Topping extends Controller
     {
         return view('admin.topping.index');
     }
+
+    public function add()
+    {
+        return view('admin.topping.add');
+    }
+
+    public function edit()
+    {
+        return view('admin.topping.edit');
+    }
 }

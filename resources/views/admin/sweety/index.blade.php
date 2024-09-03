@@ -18,30 +18,47 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                            <!-- ใส่ชื่อแต่ละคอลัมของตัวเอง -->
+                            <th>ID</th>
+                            <th>-</th>
+                            <th>-</th>
+                            <th>-</th>
+                            <th>-</th>
+                            <th>-</th>
+                            <th>แก้ไข</th>
+                            <th>ลบ</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
+                            <!-- ส่วนของข้อมูลของแต่ล่ะตาราง -->
                             <td>Tiger Nixon</td>
                             <td>System Architect</td>
                             <td>Edinburgh</td>
                             <td>61</td>
                             <td>2011/04/25</td>
                             <td>$320,800</td>
+                            <td>
+                                <button type="button" class="btn btn-warning">แก้ไข</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger">ลบ</button>
+                            </td>
                         </tr>
                         <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>63</td>
-                            <td>2011/07/25</td>
-                            <td>$170,750</td>
+                            <!-- ส่วนของข้อมูลของแต่ล่ะตาราง -->
+                            <td>Tiger Nixon</td>
+                            <td>System Architect</td>
+                            <td>Edinburgh</td>
+                            <td>61</td>
+                            <td>2011/04/25</td>
+                            <td>$320,800</td>
+                            <td>
+                                <button type="button" class="btn btn-warning">แก้ไข</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger">ลบ</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
