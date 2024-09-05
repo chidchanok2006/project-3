@@ -25,6 +25,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+// Route::prefix('promote')->name('promote.')->group(function(){
+
+
+//     Route::get('/', function () {return view('welcome');});
+
+
+
+// });
+// Route::get('/api/data', [Product::class, 'getdata'])->name('getdata');
+
+Route::prefix('api')->name('api.')->group(function(){
+
+    Route::get('/', function () {return view('welcome');});
+    Route::get('data', [Product::class, 'getdata'])->name('getdata');
+
+
+
+});
+
+
+
 Route::prefix ('admin')->name('admin.') ->group (function (){
 
     //route dashboard
@@ -44,6 +66,7 @@ Route::prefix ('admin')->name('admin.') ->group (function (){
 
         Route::get('/', [Product::class, 'index'])->name('index');
         Route::get('/add', [Product::class, 'add'])->name('add');
+        Route::post('/add', [Product::class, 'insert'])->name('insert');
         Route::get('/edit', [Product::class, 'edit'])->name('edit');
 
 

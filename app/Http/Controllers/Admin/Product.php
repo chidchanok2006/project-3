@@ -12,9 +12,36 @@ use App\Models\Category;
 
 class Product extends Controller
 {
-    public function index()
+    public function index(Request $req)
     {
-        return view('admin.product.index');
+
+        $product = Products::query();
+
+        if(!empty($req->search))
+        {
+
+            $keyword = $req->search;
+
+            $product->where(function ($query) use ($keyword) {
+
+                $query->where('name', 'LIKE', '%' .$keyword. '%')
+                    ->orWhere('detail', 'LIKE', '%' .$keyword. '%')
+                ->orWhere('price', 'LIKE', '%' .$keyword. '%');
+
+            });
+
+        }
+
+        $product->latest();
+        $result = $product->paginate(5);
+
+
+        return view('admin.product.index',
+            [
+                'products' => $result,
+            ]
+
+    );
     }
     public function add()
     {
@@ -26,22 +53,22 @@ class Product extends Controller
     }
     public function insert(Request $req)
     {
-        $req->validate(
-            [
-                'products_name' => 'required',
+        $req->validate([
+            'products_name' => 'required',
+            'products_price' => 'required|numeric',
+            'products_category' => 'required',
+            'products_image' => 'required|image',
+            'products_detail' => 'required',
+        ], [
+            'products_name.required' => '*โปรดกรอกชื่อสินค้า',
+            'products_price.required' => '*โปรดกรอกราคาสินค้า',
+            'products_price.numeric' => '*ราคาสินค้าต้องเป็นตัวเลข',
+            'products_category.required' => '*โปรดเลือกประเภทสินค้า',
+            'products_image.required' => '*โปรดเลือกรูปภาพสินค้า',
+            'products_image.image' => '*ไม่รองรับไฟล์, เลือกไฟล์นามสกุล jpg, png เท่านั้น',
+            'products_detail.required' => '*โปรดกรอกรายละเอียดสินค้า',
+        ]);
 
-
-
-
-            ],
-            [
-                'products_name.required' => 'abcdefghijklmnopqrstuvwxyz'
-
-
-
-
-            ]
-        );
 
         if($req->hasFile('products_image'))
         {
@@ -56,7 +83,7 @@ class Product extends Controller
         $create = Products::create(
             [
                 'name' => $req->products_name,
-                'category_id' => $req->category_id,
+                'category_id' => $req->products_category,
                 'price' => $req->products_price,
                 'detail' => $req->products_detail,
                 'image' => $image,
@@ -80,5 +107,11 @@ class Product extends Controller
         return view('admin.product.edit');
     }
 
+    public function getdata()
+    {
+        $data = Products::all();
+
+        return response()->json($data);
+    }
 
 }

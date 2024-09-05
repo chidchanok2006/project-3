@@ -16,11 +16,12 @@ class Products extends Model
 
     protected $table ='products';
 
-    protected $guarded =[
+    // protected $fillable = ['name','detail','price','image'];
+
+    protected $guarded = [
+
         'created_at',
         'updated_at',
-
-
 
     ];
 
