@@ -66,16 +66,49 @@
                                                 height="80px"
                                                 alt=""
                                             />
-                                        </a>
+                                        </a> 
                                     </td>
                                     <td>{{ $item->detail }}</td>
                                     <td>
-                                        <form action="{{ route('admin.product.edit') }}" method="get">
+                                        <form action="{{ route('admin.product.edit', $item->id) }}" method="get">
                                             <button type="submit" class="btn btn-warning">แก้ไข</button>
                                         </form>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-danger">ลบ</button>
+                                        <a type="button" 
+                                            class="btn btn-danger"
+                                            {{-- data-bs-toggle="modal"
+                                            data-bs-target="#confrimDeleteId{{ $item->id }}" --}}
+                                            href="{{ route('admin.product.delete', $item->id) }}"
+                                        >
+                                            ลบ
+                                        </a>
+                                        {{-- <div class="modal fade" id="confrimDeleteId{{ $item->id }}" tabindex="-1" data-bs-backdrop="static" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                            ยืนยันการลบ
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        คุณต้องการลบสินค้า "{{ $item->name }}" หรือไม่ ?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                            ยกเลิก
+                                                        </button>
+                                                        <a
+                                                            href="{{ route('admin.product.delete', $item->id) }}"
+                                                            class="btn btn-danger"
+                                                        >
+                                                            ยืนยันการลบ
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> --}}
                                     </td>
                                 </tr>
                             @endforeach
