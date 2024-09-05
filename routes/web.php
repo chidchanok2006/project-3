@@ -94,8 +94,7 @@ Route::prefix ('admin')->name('admin.') ->group (function (){
     });
 
     //order
-    Route::prefix('or
-    der')->name('order.')->group(function(){
+    Route::prefix('order')->name('order.')->group(function(){
 
         route::get('/',[Order::class,'index'])->name('index');
         route::get('add',[Order::class,'add'])->name('add');
@@ -115,8 +114,14 @@ Route::prefix ('admin')->name('admin.') ->group (function (){
     Route::prefix('topping')->name('topping.')->group(function(){
 
         route::get('/',[Topping::class,'index'])->name('index');
-        route::get('add',[Topping::class,'add'])->name('add');
-        route::get('edit',[Topping::class,'edit'])->name('edit');
+
+        Route::get('add', [Topping::class, 'add'])->name('add');
+        Route::post('add', [Topping::class, 'insert'])->name('insert');
+
+        Route::get('edit/{id}', [Topping::class, 'edit'])->name('edit');
+        Route::post('edit/{id}', [Topping::class, 'update'])->name('update');
+
+        Route::get('delete/{id}', [Topping::class, 'delete'])->name('delete');
 
     });
 

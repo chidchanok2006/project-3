@@ -32,32 +32,63 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <!-- ส่วนของข้อมูลของแต่ล่ะตาราง -->
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>
-                                <form action="{{ route('admin.topping.edit') }}" method="get">
-                                    <button type="submit" class="btn btn-warning">แก้ไข</button>
-                                </form>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger">ลบ</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <!-- ส่วนของข้อมูลของแต่ล่ะตาราง -->
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>
-                                <form action="{{ route('admin.topping.edit') }}" method="get">
-                                    <button type="submit" class="btn btn-warning">แก้ไข</button>
-                                </form>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger">ลบ</button>
-                            </td>
-                        </tr>
+                        @if(!$topping->isEmpty())
+                            @foreach ($topping as $key => $item)
+                                <tr>
+                                    <!-- ส่วนของข้อมูลของแต่ล่ะตาราง -->
+                                    <td>{{ $topping->total() - ($topping->firstItem() + $key) + 1 }}</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>
+                                        <form action="{{ route('admin.topping.edit', $item->id) }}" method="get">
+                                            <button type="submit" class="btn btn-warning">แก้ไข</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <a type="button"
+                                            class="btn btn-danger"
+                                            {{-- data-bs-toggle="modal"
+                                            data-bs-target="#confrimDeleteId{{ $item->id }}" --}}
+                                            href="{{ route('admin.topping.delete', $item->id) }}"
+                                        >
+                                            ลบ
+                                        </a>
+                                        {{-- <div class="modal fade" id="confrimDeleteId{{ $item->id }}" tabindex="-1" data-bs-backdrop="static" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                            ยืนยันการลบ
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        คุณต้องการลบสินค้า "{{ $item->name }}" หรือไม่ ?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                            ยกเลิก
+                                                        </button>
+                                                        <a
+                                                            href="{{ route('admin.topping.delete', $item->id) }}"
+                                                            class="btn btn-danger"
+                                                        >
+                                                            ยืนยันการลบ
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> --}}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="7" class="text-center text-danger fw-bolder h5">
+                                    <span class="bx bx-block"></span>
+                                    ไม่มีข้อมูล
+                                </td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>

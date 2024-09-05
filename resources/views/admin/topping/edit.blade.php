@@ -1,5 +1,4 @@
 @extends('layouts.back-end')
-@section('search.target',route('admin.topping.edit'))
 @section('content')
 <div class="container-fluid">
 
@@ -22,10 +21,31 @@
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-">
-                    <form>
+                    <form action="{{ route('admin.topping.update', $topping->id) }}"
+                        method="post"
+                        enctype="multipart/form-data"
+                    >
+
+                        @csrf
+
 
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1">ชื่อท็อปปิ้ง</label><input class="form-control" id="name" type="text" placeholder="กรอกชื่อท็อปปิ้ง">
+                            <label for="topping_name">
+                                ชื่อท็อปปิ้ง
+                                @error('topping_name')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </label>
+                            <input class="form-control {{ $errors->has('topping_name') ? 'is-invalid' : null }}"
+                                   id="topping_name"
+                                   type="text"
+                                   placeholder="กรอกชื่อท็อปปิ้ง"
+                                   name="topping_name"
+                                   value="{{ $topping->name }}"
+
+                            />
                         </div>
 
                         <br>
@@ -46,3 +66,5 @@
 
 </div>
 @endsection
+
+
