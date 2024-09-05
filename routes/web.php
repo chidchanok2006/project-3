@@ -82,9 +82,15 @@ Route::prefix ('admin')->name('admin.') ->group (function (){
     //category
     Route::prefix('category')->name('category.')->group(function(){
 
-        route::get('/',[Category::class,'index'])->name('index');
+        Route::get('/', [Category::class, 'index'])->name('index');
+
         Route::get('add', [Category::class, 'add'])->name('add');
-        Route::get('edit', [Category::class, 'edit'])->name('edit');
+        Route::post('add', [Category::class, 'insert'])->name('insert');
+
+        Route::get('edit/{id}', [Category::class, 'edit'])->name('edit');
+        Route::post('edit/{id}', [Category::class, 'update'])->name('update');
+
+        Route::get('delete/{id}', [Category::class, 'delete'])->name('delete');
     });
 
     //order
@@ -100,6 +106,8 @@ Route::prefix ('admin')->name('admin.') ->group (function (){
     Route::prefix('sweety')->name('sweety.')->group(function(){
 
         route::get('/',[Sweety::class,'index'])->name('index');
+        route::get('add',[Sweety::class,'add'])->name('add');
+        route::get('edit',[Sweety::class,'edit'])->name('edit');
 
     });
 

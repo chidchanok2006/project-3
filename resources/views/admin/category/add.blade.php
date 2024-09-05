@@ -22,14 +22,34 @@
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-">
-                    <form>
+                    <form action="{{ route('admin.category.insert') }}"
+                          method="post"
+                          enctype="multipart/form-data"
+                    >
+
+                        @csrf
+
 
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1">ชื่อประเภทสินค้า</label><input class="form-control" id="name" type="text" placeholder="กรอกชื่อประเภทสินค้า">
+                            <label for="category_name">
+                                ชื่อประเภทสินค้า
+                                @error('category_name')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </label>
+                            <input class="form-control {{ $errors->has('category_name') ? 'is-invalid' : null }}"
+                                   id="category_name"
+                                   type="text"
+                                   placeholder="กรอกชื่อประเภทสินค้า"
+                                   name="category_name"
+                            />
+
                         </div>
 
                         <br>
-                        <button type="submit" class="btn btn-success">เพิ่มข้อมูล</button>
+                        <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>
                         <a type="button" href="{{route('admin.category.index')}}" class="btn btn-danger">ยกเลิก</a>
                     </form>
                 </div>

@@ -11,4 +11,15 @@ class Sweety extends Controller
     {
         return view('admin.sweety.index');
     }
+
+    public function add()
+    {
+        return view('admin.sweety.add');
+    }
+
+    public function edit()
+    {
+        return view('admin.sweety.edit');
+    }
+
 }

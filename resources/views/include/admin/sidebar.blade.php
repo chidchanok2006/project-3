@@ -38,11 +38,11 @@
             <i class="fa fa-sort"></i>
             <span>Order</span></a>
     </li>
-    {{-- <li class="nav-item active">
+    <li class="nav-item active">
         <a class="nav-link" href="{{ route('admin.sweety.index') }}">
             <i class="fa fa-history"></i>
             <span>Sweety</span></a>
-    </li> --}}
+    </li>
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('admin.topping.index') }}">
             <i class="fa fa-history"></i>

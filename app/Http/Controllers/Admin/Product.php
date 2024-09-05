@@ -36,11 +36,11 @@ class Product extends Controller
         $result = $product->paginate(5);
 
 
-        return view('admin.product.index',
+        return view(
+            'admin.product.index',
             [
                 'products' => $result,
             ]
-
     );
     }
     public function add()
@@ -109,7 +109,7 @@ class Product extends Controller
         if(!empty($product->id))
 
             return view(
-                
+
                 'admin.product.edit',
                 [
                     'category' => Category::all(),
@@ -192,7 +192,7 @@ class Product extends Controller
             // alert()->error('แจ้งเตือน','ลบรายการสินค้าไม่สำเร็จ');
             return redirect()->route('admin.product.index');
             }
-        
+
 
 
     }

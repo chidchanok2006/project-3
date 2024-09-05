@@ -66,7 +66,7 @@
                                                 height="80px"
                                                 alt=""
                                             />
-                                        </a> 
+                                        </a>
                                     </td>
                                     <td>{{ $item->detail }}</td>
                                     <td>
@@ -75,7 +75,7 @@
                                         </form>
                                     </td>
                                     <td>
-                                        <a type="button" 
+                                        <a type="button"
                                             class="btn btn-danger"
                                             {{-- data-bs-toggle="modal"
                                             data-bs-target="#confrimDeleteId{{ $item->id }}" --}}

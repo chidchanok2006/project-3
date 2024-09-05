@@ -1,5 +1,4 @@
 @extends('layouts.back-end')
-@section('search.target',route('admin.category.edit'))
 @section('content')
 <div class="container-fluid">
 
@@ -22,10 +21,31 @@
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-">
-                    <form>
+                    <form action="{{ route('admin.category.update', $category->id) }}"
+                        method="post"
+                        enctype="multipart/form-data"
+                    >
+
+                        @csrf
+
 
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1">ประเภทสินค้า</label><input class="form-control" id="name" type="text">
+                            <label for="category_name">
+                                ชื่อประเภทสินค้า
+                                @error('category_name')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </label>
+                            <input class="form-control {{ $errors->has('category_name') ? 'is-invalid' : null }}"
+                                   id="category_name"
+                                   type="text"
+                                   placeholder="กรอกชื่อประเภทสินค้า"
+                                   name="category_name"
+                                   value="{{ $category->name }}"
+
+                            />
                         </div>
 
                         <br>
